@@ -1,38 +1,27 @@
 import React from 'react'
-import { AppBar,
+import {
+    AppBar,
     CssBaseline,
-    Drawer,
     Divider,
-    Hidden,
     IconButton,
     List,
     ListItem,
     ListItemText,
     makeStyles,
+    SwipeableDrawer,
     Toolbar,
     Typography,
     useMediaQuery,
-    useTheme } from "@material-ui/core";
+    useTheme
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu"
-
-const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     headerRoot: {
-        display: 'flex',
         flexGrow: 1,
-    },
-    drawer: {
-        [theme.breakpoints.up('sm')]: {
-            width: drawerWidth,
-            flexShrink: 0,
-        }
     },
     menuButton: {
         marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
-            display: 'none',
-        },
     },
     title: {
         flexGrow: 1,
@@ -41,34 +30,36 @@ const useStyles = makeStyles((theme) => ({
         zIndex: theme.zIndex.drawer + 1,
         background: "#245b80"
     },
-    toolbar: theme.mixins.toolbar,
-    drawerPaper: {
-        width: drawerWidth,
+    drawer: {
+        width: 250,
     },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    }
+    toolbar: theme.mixins.toolbar,
 }));
 
 function Header(props) {
-    const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [state, setState] = React.useState({left: false})
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+        setState({...state, [anchor]: open });
+    }
     const headerText = useMediaQuery(theme.breakpoints.up('sm')) ? "University Management System" : "UMS";
 
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
-
-    const drawer = (
-        <div>
+    const drawer = (anchor) => (
+        <div
+            className={classes.drawer}
+            role="presentation"
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}
+        >
             <div className={classes.toolbar} />
             <Divider />
             <List>
-                {['Item 1', 'Item 2', 'Item 3', 'Item 4'].map((text) => (
-                    <ListItem button key = {text}>
+                {['Administrativo', 'Estudiante', 'Profesor'].map((text) => (
+                    <ListItem button key={text}>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
@@ -76,22 +67,26 @@ function Header(props) {
             <Divider />
             <List>
                 {['Cerrar Sesión'].map((text) => (
-                    <ListItem button key = {text}>
+                    <ListItem button key={text}>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
             </List>
         </div>
-    );
-
-    const container = window !== undefined ? () => window().document.body : undefined;
+    )
 
     return (
         <div className={classes.headerRoot}>
             <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
+            <AppBar position="static" className={classes.appBar}>
                 <Toolbar>
-                    <IconButton edge="start" onClick={handleDrawerToggle} className={classes.menuButton} color="inherit" aria-label="menu">
+                    <IconButton
+                        edge="start"
+                        onClick={toggleDrawer("left", true)}
+                        className={classes.menuButton}
+                        color="inherit"
+                        aria-label="menu"
+                    >
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
@@ -99,34 +94,14 @@ function Header(props) {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <nav className={classes.drawer} aria-label="actions-menu">
-                <Hidden smUp implementation="css">
-                    <Drawer
-                        container={container}
-                        variant="temporary"
-                        anchor={theme.direction === "rtl" ? "right" : "left"}
-                        open={mobileOpen}
-                        onClose={handleDrawerToggle}
-                        classes={{
-                            paper: classes.drawerPaper,
-                        }}
-                        ModalProps={{
-                            keepMounted: true,
-                        }}
-                    >
-                        {drawer}
-                    </Drawer>
-                </Hidden>
-                <Hidden xsDown implementation="css">
-                    <Drawer
-                        classes={{paper: classes.drawerPaper}}
-                        variant="permanent"
-                        open
-                    >
-                        {drawer}
-                    </Drawer>
-                </Hidden>
-            </nav>
+            <SwipeableDrawer
+                anchor="left"
+                onClose={toggleDrawer("left", false)}
+                onOpen={toggleDrawer("left", true)}
+                open={state['left']}
+            >
+                {drawer("left")}
+            </SwipeableDrawer>
         </div>
     )
 }

@@ -53,7 +53,7 @@ function Login(props) {
         <Container component="login" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
-                <h1>¡Bienvenidos a UMS!</h1><br />
+                <Typography component="h1" variant="h5">¡Bienvenidos a UMS!</Typography><br />
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
                 </Avatar>
@@ -75,7 +75,6 @@ function Login(props) {
                             color="primary"
                         />
                         <TextField
-                            color="#245b80"
                             variant="outlined"
                             margin="normal"
                             required
