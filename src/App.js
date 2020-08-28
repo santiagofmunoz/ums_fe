@@ -1,12 +1,12 @@
 import React from 'react';
-import Header from './components/Header'
+import Login from './Login';
 
-function App() {
-  return (
-      <div className="App">
-          <Header />
-      </div>
-  );
+function App(props) {
+    return (
+        <div className="App">
+            <Login />
+        </div>
+    );
 }
 
 export default App;

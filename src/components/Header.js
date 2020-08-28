@@ -18,7 +18,7 @@ import MenuIcon from "@material-ui/icons/Menu"
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+    headerRoot: {
         display: 'flex',
         flexGrow: 1,
     },
@@ -87,7 +87,7 @@ function Header(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <div className={classes.root}>
+        <div className={classes.headerRoot}>
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
