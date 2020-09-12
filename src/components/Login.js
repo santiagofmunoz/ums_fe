@@ -50,7 +50,7 @@ function Login(props) {
     const classes = useStyles();
 
     return(
-        <Container component="login" maxWidth="xs">
+        <Container component="Login" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5">¡Bienvenidos a UMS!</Typography><br />

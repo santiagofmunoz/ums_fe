@@ -58,7 +58,7 @@ function Header(props) {
             <div className={classes.toolbar} />
             <Divider />
             <List>
-                {['Administrativo', 'Estudiante', 'Profesor'].map((text) => (
+                {['Crear Estudiante (Administrativo)'].map((text) => (
                     <ListItem button key={text}>
                         <ListItemText primary={text} />
                     </ListItem>

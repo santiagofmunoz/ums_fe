@@ -1,10 +1,12 @@
 import React from 'react';
-import Login from './components/Login';
+import Header from "./components/Header";
+import CreateStudent from "./components/CreateStudent";
 
 function App(props) {
     return (
         <div className="App">
-            <Login />
+            <Header />
+            <CreateStudent />
         </div>
     );
 }
