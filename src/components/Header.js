@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 import {
     AppBar,
     CssBaseline,
@@ -58,19 +59,24 @@ function Header(props) {
             <div className={classes.toolbar} />
             <Divider />
             <List>
-                {['Crear Estudiante (Administrativo)'].map((text) => (
-                    <ListItem button key={text}>
-                        <ListItemText primary={text} />
+                <Link to="/login">
+                    <ListItem button key="Login">
+                        <ListItemText primary="Login" />
                     </ListItem>
-                ))}
+                </Link>
+                <Link to="/crear_estudiante">
+                    <ListItem button key="Crear Estudiante (Administrativo)">
+                        <ListItemText primary="Crear Estudiante (Administrativo)" />
+                    </ListItem>
+                </Link>
             </List>
             <Divider />
             <List>
-                {['Cerrar Sesión'].map((text) => (
-                    <ListItem button key={text}>
-                        <ListItemText primary={text} />
+                <Link to="/logout">
+                    <ListItem button key="Cerrar Sesión">
+                        <ListItemText primary="Cerrar Sesión" />
                     </ListItem>
-                ))}
+                </Link>
             </List>
         </div>
     )

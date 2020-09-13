@@ -81,110 +81,111 @@ function CreateStudent() {
             <CssBaseline />
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5">
-                    <form className={classes.form} noValidate onSubmit={handleSubmit}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    autoComplete="fname"
-                                    name="firstName"
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="Nombre"
-                                    autoFocus
-                                    onChange={e => setFirstName(e.target.value)}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Apellido"
-                                    name="lastName"
-                                    autoComplete="lname"
-                                    onChange={e => setLastName(e.target.value)}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="ci"
-                                    label="Cédula de Identidad"
-                                    type="number"
-                                    name="ci"
-                                    autoComplete="username"
-                                    onChange={e => setCi(e.target.value)}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Email"
-                                    name="email"
-                                    autoComplete="email"
-                                    onChange={e => setEmail(e.target.value)}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="password"
-                                    label="Contraseña"
-                                    type="password"
-                                    name="password"
-                                    autoComplete="current-password"
-                                    onChange={e => setPassword(e.target.value)}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="phone"
-                                    label="Celular"
-                                    type="number"
-                                    name="phone"
-                                    autoComplete="phone"
-                                    onChange={e => setPhone(e.target.value)}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="address"
-                                    label="Dirección"
-                                    name="address"
-                                    autoComplete="address"
-                                    onChange={e => setAddress(e.target.value)}
-                                />
-                            </Grid>
-                        </Grid>
-                        <MuiThemeProvider theme={submitButton}>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}
-                            >
-                                Crear estudiante
-                            </Button>
-                        </MuiThemeProvider>
-                    </form>
+                    Crear estudiante
                 </Typography>
+                <form className={classes.form} noValidate onSubmit={handleSubmit}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                autoComplete="fname"
+                                name="firstName"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="firstName"
+                                label="Nombre"
+                                autoFocus
+                                onChange={e => setFirstName(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="lastName"
+                                label="Apellido"
+                                name="lastName"
+                                autoComplete="lname"
+                                onChange={e => setLastName(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="ci"
+                                label="Cédula de Identidad"
+                                type="number"
+                                name="ci"
+                                autoComplete="username"
+                                onChange={e => setCi(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email"
+                                name="email"
+                                autoComplete="email"
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="password"
+                                label="Contraseña"
+                                type="password"
+                                name="password"
+                                autoComplete="current-password"
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="phone"
+                                label="Celular"
+                                type="number"
+                                name="phone"
+                                autoComplete="phone"
+                                onChange={e => setPhone(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="address"
+                                label="Dirección"
+                                name="address"
+                                autoComplete="address"
+                                onChange={e => setAddress(e.target.value)}
+                            />
+                        </Grid>
+                    </Grid>
+                    <MuiThemeProvider theme={submitButton}>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
+                            Crear estudiante
+                        </Button>
+                    </MuiThemeProvider>
+                </form>
             </div>
         </Container>
     )
