@@ -1,11 +1,11 @@
 import axios from 'axios';
 const API_URL = "http://localhost:8000"
 
-class StudentService {
-    createStudent(student) {
+class TeacherService {
+    createTeacher(teacher) {
         const url = `${API_URL}/api/person/create/`;
-        return axios.post(url, student)
+        return axios.post(url, teacher)
     }
 }
 
-export default StudentService;
+export default TeacherService;

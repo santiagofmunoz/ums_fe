@@ -60,13 +60,18 @@ function Header(props) {
             <Divider />
             <List>
                 <Link to="/login">
-                    <ListItem button key="Login">
+                    <ListItem button key="login">
                         <ListItemText primary="Login" />
                     </ListItem>
                 </Link>
                 <Link to="/crear_estudiante">
-                    <ListItem button key="Crear Estudiante (Administrativo)">
+                    <ListItem button key="create_student">
                         <ListItemText primary="Crear Estudiante (Administrativo)" />
+                    </ListItem>
+                </Link>
+                <Link to="/crear_docente">
+                    <ListItem button key="create_teacher">
+                        <ListItemText primary="Crear Docente (Administrador)" />
                     </ListItem>
                 </Link>
             </List>
