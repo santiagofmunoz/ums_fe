@@ -109,7 +109,7 @@ function CreatePerson(props) {
     }
 
     return (
-        <Container maxWidth="xs">
+        <Container maxWidth="sm">
             <CssBaseline />
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5">

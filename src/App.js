@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import CreateStudent from "./components/CreateStudent";
 import CreateTeacher from "./components/CreateTeacher";
 import CreateAdministrative from "./components/CreateAdministrative";
+import CreateCareer from "./components/CreateCareer";
 
 function App(props) {
     return (
@@ -27,6 +28,9 @@ function App(props) {
                     </Route>
                     <Route path="/crear_administrativo">
                         <CreateAdministrative />
+                    </Route>
+                    <Route path="/crear_carrera">
+                        <CreateCareer />
                     </Route>
                     <Route path="/logout">
                         {/*TODO: Not implemented*/}
