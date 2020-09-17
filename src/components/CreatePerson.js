@@ -14,10 +14,12 @@ import Swal from "sweetalert2";
 import GenericFunctions from './GenericFunctions'
 import StudentService from "./services/StudentService";
 import TeacherService from "./services/TeacherService";
+import AdministrativeService from "./services/AdministrativeService";
 
 const genericFunctions = new GenericFunctions();
 const studentService = new StudentService();
 const teacherService = new TeacherService();
+const administrativeService = new AdministrativeService();
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -90,6 +92,14 @@ function CreatePerson(props) {
         else if(props.personType === "teacher") {
             const teacherObj = {...personObj, "type": "teacher"}
             teacherService.createTeacher(teacherObj).then((result) => {
+                successMessage();
+            }).catch(() => {
+                errorMessage();
+            })
+        }
+        else if(props.personType === "administrative") {
+            const teacherObj = {...personObj, "type": "administrative"}
+            administrativeService.createAdministrative(teacherObj).then((result) => {
                 successMessage();
             }).catch(() => {
                 errorMessage();

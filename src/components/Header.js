@@ -71,7 +71,12 @@ function Header(props) {
                 </Link>
                 <Link to="/crear_docente">
                     <ListItem button key="create_teacher">
-                        <ListItemText primary="Crear Docente (Administrador)" />
+                        <ListItemText primary="Crear Docente (Administrativo)" />
+                    </ListItem>
+                </Link>
+                <Link to="/crear_administrativo">
+                    <ListItem button key="create_administrative">
+                        <ListItemText primary="Crear Administrativo (Administrador)" />
                     </ListItem>
                 </Link>
             </List>
