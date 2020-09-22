@@ -10,7 +10,6 @@ import {
     TextField,
     Typography
 } from "@material-ui/core";
-import Swal from "sweetalert2";
 import GenericFunctions from './GenericFunctions'
 import StudentService from "./services/StudentService";
 import TeacherService from "./services/TeacherService";
@@ -53,25 +52,8 @@ function CreatePerson(props) {
     const [phone, setPhone] = useState(null);
     const [address, setAddress] = useState(null);
 
-    function successMessage() {
-        const personTitle = genericFunctions.capitalize(props.personTitle);
-        Swal.fire({
-            title: "¡" + personTitle + " creado con éxito!",
-            icon: 'success',
-        })
-    }
-
-    function errorMessage() {
-        const personTitle = props.personTitle
-        Swal.fire({
-            title: '¡Error!',
-            text: "Ha ocurrido un error al momento de crear el " + personTitle + "." +
-                "Por favor, revise los datos ingresados y vuelva a intentarlo.",
-            icon: 'error',
-        })
-    }
-
     function handleSubmit(event) {
+        const personTitle = props.personTitle;
         const personObj = {
             "first_name": firstName,
             "last_name": lastName,
@@ -84,25 +66,25 @@ function CreatePerson(props) {
         if(props.personType === "student") {
             const studentObj = {...personObj, "type": "student"}
             studentService.createStudent(studentObj).then((result) => {
-                successMessage();
+                genericFunctions.successMessage(personTitle);
             }).catch(() => {
-                errorMessage();
+                genericFunctions.errorMessage(personTitle);
             })
         }
         else if(props.personType === "teacher") {
             const teacherObj = {...personObj, "type": "teacher"}
             teacherService.createTeacher(teacherObj).then((result) => {
-                successMessage();
+                genericFunctions.successMessage(personTitle);
             }).catch(() => {
-                errorMessage();
+                genericFunctions.errorMessage(personTitle);
             })
         }
         else if(props.personType === "administrative") {
             const teacherObj = {...personObj, "type": "administrative"}
             administrativeService.createAdministrative(teacherObj).then((result) => {
-                successMessage();
+                genericFunctions.successMessage(personTitle);
             }).catch(() => {
-                errorMessage();
+                genericFunctions.errorMessage(personTitle);
             })
         }
         event.preventDefault();
@@ -115,7 +97,7 @@ function CreatePerson(props) {
                 <Typography component="h1" variant="h5">
                     Crear {props.personTitle}
                 </Typography>
-                <form className={classes.form} noValidate onSubmit={handleSubmit}>
+                <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField

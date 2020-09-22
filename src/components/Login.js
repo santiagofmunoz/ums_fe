@@ -61,35 +61,29 @@ function Login(props) {
                     Iniciar Sesión
                 </Typography>
                 <form className={classes.form}>
-                    <MuiThemeProvider theme={textField}>
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="ci"
-                            label="Cédula de Identidad"
-                            name="ci"
-                            autoComplete="ci"
-                            autoFocus
-                            color="primary"
-                        />
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            color="primary"
-                        />
-                    </MuiThemeProvider>
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="ci"
+                        label="Cédula de Identidad"
+                        name="ci"
+                        autoComplete="ci"
+                        autoFocus
+                        color="primary"
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        color="primary"
                     />
                     <MuiThemeProvider theme={loginButton}>
                         <Button

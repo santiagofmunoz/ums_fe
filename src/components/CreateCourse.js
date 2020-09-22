@@ -14,10 +14,11 @@ import {
     TextField,
     Typography
 } from "@material-ui/core";
-import Swal from "sweetalert2";
 import CourseService from "./services/CourseService";
 import CareerService from "./services/CareerService";
+import GenericFunctions from "./GenericFunctions";
 
+const genericFunctions = new GenericFunctions();
 const courseService = new CourseService();
 const careerService = new CareerService();
 
@@ -59,22 +60,6 @@ function CreateCourse() {
         })
     }, [])
 
-    function successMessage() {
-        Swal.fire({
-            title: "¡Curso creado con éxito!",
-            icon: 'success',
-        })
-    }
-    // TODO: CREATE DUPLICATED COURSE MESSAGE
-    function errorMessage() {
-        Swal.fire({
-            title: '¡Error!',
-            text: "Ha ocurrido un error al momento de crear el curso." +
-                "Por favor, revise los datos ingresados y vuelva a intentarlo.",
-            icon: 'error',
-        })
-    }
-
     function handleSubmit(event) {
         const courseObj = {
             "course_name": courseName,
@@ -82,9 +67,14 @@ function CreateCourse() {
             "career_pk": career,
         }
         courseService.createCourse(courseObj).then((result) => {
-            successMessage();
-        }).catch(() => {
-            errorMessage();
+            genericFunctions.successMessage("curso");
+        }).catch((error) => {
+            const error_data = error.response.data;
+            if(error_data.course_name[0] === "course with this Course Name already exists.") {
+                genericFunctions.duplicatedMessage("curso");
+            } else {
+                genericFunctions.errorMessage("curso");
+            }
         })
         event.preventDefault();
     }
@@ -96,7 +86,7 @@ function CreateCourse() {
                 <Typography component="h1" variant="h5">
                     Crear curso
                 </Typography>
-                <form className={classes.form} noValidate onSubmit={handleSubmit}>
+                <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
@@ -120,8 +110,6 @@ function CreateCourse() {
                                 onChange={e => setCourseCredits(e.target.value)}
                             />
                         </Grid>
-                    </Grid>
-                    <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <FormControl required variant="outlined" className={classes.formControl}>
                                 <InputLabel id="career-label">Carrera</InputLabel>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {
     AppBar,
     CssBaseline,
@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header(props) {
+    const history = useHistory();
     const classes = useStyles();
     const theme = useTheme();
     const [state, setState] = React.useState({left: false})
@@ -49,6 +50,10 @@ function Header(props) {
     }
     const headerText = useMediaQuery(theme.breakpoints.up('sm')) ? "University Management System" : "UMS";
 
+    function handleNavigation(to) {
+        history.push("/" + to)
+    }
+
     const drawer = (anchor) => (
         <div
             className={classes.drawer}
@@ -59,44 +64,30 @@ function Header(props) {
             <div className={classes.toolbar} />
             <Divider />
             <List>
-                <Link to="/login">
-                    <ListItem button key="login">
-                        <ListItemText primary="Login" />
-                    </ListItem>
-                </Link>
-                <Link to="/crear_estudiante">
-                    <ListItem button key="create_student">
-                        <ListItemText primary="Crear Estudiante (Administrativo)" />
-                    </ListItem>
-                </Link>
-                <Link to="/crear_docente">
-                    <ListItem button key="create_teacher">
-                        <ListItemText primary="Crear Docente (Administrativo)" />
-                    </ListItem>
-                </Link>
-                <Link to="/crear_administrativo">
-                    <ListItem button key="create_administrative">
-                        <ListItemText primary="Crear Administrativo (Administrador)" />
-                    </ListItem>
-                </Link>
-                <Link to="/crear_carrera">
-                    <ListItem button key="create_career">
-                        <ListItemText primary="Crear Carrera (Administrador)" />
-                    </ListItem>
-                </Link>
-                <Link to="/crear_curso">
-                    <ListItem button key="create_course">
-                        <ListItemText primary="Crear Curso (Administrador)" />
-                    </ListItem>
-                </Link>
+                <ListItem button key="login" onClick={() => handleNavigation("login")}>
+                    <ListItemText primary="Login" />
+                </ListItem>
+                <ListItem button key="create_student" onClick={() => handleNavigation("crear_estudiante")}>
+                    <ListItemText primary="Crear Estudiante (Administrativo)" />
+                </ListItem>
+                <ListItem button key="create_teacher" onClick={() => handleNavigation("crear_docente")}>
+                    <ListItemText primary="Crear Docente (Administrativo)" />
+                </ListItem>
+                <ListItem button key="create_administrative" onClick={() => handleNavigation("crear_administrativo")}>
+                    <ListItemText primary="Crear Administrativo (Administrador)" />
+                </ListItem>
+                <ListItem button key="create_career" onClick={() => handleNavigation("crear_carrera")}>
+                    <ListItemText primary="Crear Carrera (Administrador)" />
+                </ListItem>
+                <ListItem button key="create_course" onClick={() => handleNavigation("crear_curso")}>
+                    <ListItemText primary="Crear Curso (Administrador)" />
+                </ListItem>
             </List>
             <Divider />
             <List>
-                <Link to="/logout">
-                    <ListItem button key="Cerrar Sesión">
-                        <ListItemText primary="Cerrar Sesión" />
-                    </ListItem>
-                </Link>
+                <ListItem button key="Cerrar Sesión" onClick={() => handleNavigation("logout")}>
+                    <ListItemText primary="Cerrar Sesión" />
+                </ListItem>
             </List>
         </div>
     )

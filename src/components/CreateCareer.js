@@ -10,10 +10,11 @@ import {
     TextField,
     Typography
 } from "@material-ui/core";
-import Swal from "sweetalert2";
 import CareerService from "./services/CareerService";
+import GenericFunctions from "./GenericFunctions";
 
 const careerService = new CareerService();
+const genericFunctions = new GenericFunctions();
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -42,31 +43,15 @@ function CreateCareer() {
     const [careerName, setCareerName] = useState(null);
     const [careerCredits, setCareerCredits] = useState(null);
 
-    function successMessage() {
-        Swal.fire({
-            title: "¡Carrera creada con éxito!",
-            icon: 'success',
-        })
-    }
-
-    function errorMessage() {
-        Swal.fire({
-            title: '¡Error!',
-            text: "Ha ocurrido un error al momento de crear la carrera." +
-                "Por favor, revise los datos ingresados y vuelva a intentarlo.",
-            icon: 'error',
-        })
-    }
-
     function handleSubmit(event) {
         const careerObj = {
             "career_name": careerName,
             "career_credits": careerCredits,
         }
         careerService.createCareer(careerObj).then((result) => {
-            successMessage();
+            genericFunctions.successMessage("carrera");
         }).catch(() => {
-            errorMessage();
+            genericFunctions.errorMessage("carrera");
         })
         event.preventDefault();
     }
@@ -78,7 +63,7 @@ function CreateCareer() {
                 <Typography component="h1" variant="h5">
                     Crear carrera
                 </Typography>
-                <form className={classes.form} noValidate onSubmit={handleSubmit}>
+                <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
